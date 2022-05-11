@@ -4,7 +4,6 @@ import { galleryItems } from './gallery-items.js';
 // console.log(galleryItems);
 
 const gallery = document.querySelector('.gallery');
-// console.log(gallery);
 
 const createGalleryMarkup = ({original, preview, description}) => {
     return `<a class="gallery__item" href="${original}">
@@ -17,8 +16,17 @@ gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
 const handleClickImage = (event) => {
     event.preventDefault();
+    if (event.target.nodeName !== 'IMG') {
+        return;
+    }
 
+    let gallery = new SimpleLightbox('.gallery a',
+        {
+            captionsData: 'alt',
+            captionDelay: 250,
+        });
+    galleryImage.on('show.simplelightbox', function () {
+    });
 }
 
 gallery.addEventListener('click', handleClickImage);
-
